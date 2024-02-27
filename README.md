@@ -5,6 +5,8 @@ Show real estate properties list using Laravel and MySQL. Used built in authenti
 ### Setup
 - `git clone git@github.com:chamithlkml/my-listings.git`
 - `cd my-listgings`
+- `cp .env.example .env`
+- `php artisan key:generate`
 - `docker compose up -d`
 - `php artisan serve`
 - Open a new terminal window and run `npm run dev`
