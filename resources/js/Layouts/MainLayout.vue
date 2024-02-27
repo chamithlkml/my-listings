@@ -3,14 +3,13 @@
             <div class="container mx-auto">
                 <nav class="p-4 flex items-center justify-between">
                     <div class="text-lg font-medium"><Link :href="route('listings.index')">Listings</Link></div>
-                    <div class="text-xl text-indigo-600 dark:text-indigo-300"><Link :href="route('listings.index')">My Listings</Link></div>
+                    <div class="text-xl text-indigo-600 dark:text-indigo-300"><Link :href="route('home')">My Listings</Link></div>
                     <div v-if="user" class="flex items-center gap-4">
                       <div class="text-sm text-gray-500">{{ user.name }}</div>
                       <Link :href="route('listings.create')" class="btn-primary">+ New Listing</Link>
                       <Link :href="route('destroy')" method="DELETE" as="button">Logout</Link>
                     </div>
                     <div v-else class="flex items-center gap-4">
-                      <Link :href="route('user-account.create')">Register</Link>
                       <Link :href="route('user-account.create')">Register</Link>
                       <Link :href="route('login')">Sign In</Link>
                     </div>

@@ -1,11 +1,5 @@
 <template>
 <div>
-  <h1>Index</h1>
-  <div>{{ message }}</div>
+  <h1>Index Page</h1>
 </div>
 </template>
-<script setup>
-defineProps({
-  message: String
-})
-</script>
