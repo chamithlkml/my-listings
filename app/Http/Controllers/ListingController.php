@@ -14,12 +14,12 @@ class ListingController extends Controller
     public function index()
     {
         $this->authorize('index', Listing::class);
-        $listings = Listing::orderByDesc('created_at')->get();
+        $listings = Listing::orderByDesc('created_at')->paginate(10);
 
         return Inertia::render(
             'Listing/IndexPage',
             [
-                'listings' => $listings
+                'paginatedListings' => $listings
             ]
         );
     }
