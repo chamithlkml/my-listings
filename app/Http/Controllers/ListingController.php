@@ -11,14 +11,57 @@ class ListingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('index', Listing::class);
-        $listings = Listing::orderByDesc('created_at')->paginate(10);
+        $listings = Listing::orderByDesc('created_at');
+        $filters = $request->only([
+            'priceFrom',
+            'priceTo',
+            'beds',
+            'baths',
+            'areaFrom',
+            'areaTo'
+        ]);
+
+        if($filters['priceFrom'] ?? false)
+        {
+            $listings = $listings->where('price', '>=', $filters['priceFrom']);
+        }
+
+        if($filters['priceTo'] ?? false)
+        {
+            $listings = $listings->where('price', '<=', $filters['priceTo']);
+        }
+
+
+        if($filters['beds'] ?? false)
+        {
+            $listings = $listings->where('beds', $filters['beds']);
+        }
+
+        if($filters['baths'] ?? false)
+        {
+            $listings = $listings->where('baths', $filters['baths']);
+        }
+
+        if($filters['areaFrom'] ?? false)
+        {
+            $listings = $listings->where('area', '>=', $filters['areaFrom']);
+        }
+
+        if($filters['areaTo'] ?? false)
+        {
+            $listings = $listings->where('area', '<=', $filters['areaTo']);
+        }
+
+        $listings = $listings->paginate(10)
+                    ->withQueryString();
 
         return Inertia::render(
             'Listing/IndexPage',
             [
+                'filters' => $filters,
                 'paginatedListings' => $listings
             ]
         );

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Filter />
+        <Filter :filters="filters" />
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             <Listing :user="user" v-for="listing in paginatedListings.data" :key="listing.id" :listing="listing"/>
         </div>
@@ -15,6 +15,7 @@ import Pagination from '@/Components/UI/Pagination.vue'
 import Filter from '@/Pages/Listing/Index/Components/Filter.vue'
 const user = computed(() => usePage().props.user)
 defineProps({
+  filters: Object,
   paginatedListings: Object
 })
 </script>
