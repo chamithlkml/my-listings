@@ -38,8 +38,8 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', Listing::class);
-        Listing::create($request->validate([
+        $this->authorize('store', Listing::class);
+        $listingData = $request->validate([
             'beds' => 'required|integer|min:1',
             'baths' => 'required|integer|min:1',
             'area' => 'required|integer|min:1',
@@ -48,7 +48,11 @@ class ListingController extends Controller
             'street' => 'required|string',
             'street_nr' => 'required|string',
             'price' => 'required|integer',
-        ]));
+        ]);
+
+        $listingData['user_id'] = auth()->user()->id;
+
+        Listing::create($listingData);
 
         return redirect()->route('listings.index')
         ->with('success', 'Listing created successfully.');

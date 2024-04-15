@@ -8,6 +8,8 @@ Show real estate properties list using Laravel and MySQL. Used built in authenti
 - `cp .env.example .env`
 - `php artisan key:generate`
 - `docker compose up -d`
+- `php artisan migrate`
+- `php artisan db:seed`
 - `php artisan serve`
 - Open a new terminal window and run `npm run dev`
 - Open a new terminal window and run `php artisan db:seed`

@@ -32,10 +32,15 @@ class ListingPolicy
         return $user ? true : false;
     }
 
+    public function store(User $user): bool
+    {
+        return $user ? true : false;
+    }
+
     /**
      * Determine whether the user can update the model.
      */
-    public function update(?User $user, ?Listing $listing): bool
+    public function update(User $user, Listing $listing): bool
     {
         return $listing?->user->id === $user?->id;
     }

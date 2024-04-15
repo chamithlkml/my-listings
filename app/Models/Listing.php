@@ -19,6 +19,7 @@ class Listing extends Model
         'street',
         'street_nr',
         'price',
+        'user_id'
     ];
 
     public function user(): BelongsTo
